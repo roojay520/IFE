@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: path.join(__dirname, 'src', 'main'),
+  entry: [path.join(__dirname, 'src', 'main')],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -20,15 +20,15 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: [
-            ['env', {
-              modules: false,
-              targets: {
-                browsers: ['> 1%', 'last 2 versions', 'not ie <= 8'],
-              },
-            }],
-          ],
-          plugins: ['transform-runtime'],
+          // presets: [
+          //   ['env', {
+          //     modules: false,
+          //     targets: {
+          //       browsers: ['> 1%', 'last 2 versions', 'not ie <= 8'],
+          //     },
+          //   }],
+          // ],
+          // plugins: ['transform-runtime'],
         },
 
       },
