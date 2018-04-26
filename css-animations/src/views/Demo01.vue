@@ -22,7 +22,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
   $blue: #409eff;
-  $gray: #333;
+  $black: #333;
   $white: #fff;
 
   div {
@@ -48,12 +48,19 @@ export default Vue.extend({
     }
   }
   // 将 X 轴缩放为 0
-  .close::after {
-    transform: scaleX(0);
+  .close {
+    color: $black;
+    &::after {
+        transform: scaleX(0);
+      }
   }
+
   // 将 X 轴缩放为 1
-  .open::after {
+  .open {
+    color: $blue;
+    &::after {
     transform: scaleX(1);
+  }
   }
   button {
     font-size: 1.2em;
@@ -67,11 +74,11 @@ export default Vue.extend({
     outline: none;
     border: none;
     background: rgba($color: $white, $alpha: 1);
-    box-shadow: 0 0 4px rgba($color: $gray, $alpha: .4);
+    box-shadow: 0 0 4px rgba($color: $black, $alpha: .4);
     // 设置点击快进慢出
     transition: box-shadow .5s ease-out;
     &:hover {
-     box-shadow: 0 0 6px rgba($color: $gray, $alpha: .5);
+     box-shadow: 0 0 6px rgba($color: $black, $alpha: .5);
     }
     &:active {
       background: rgba($color: $blue, $alpha: .8);
