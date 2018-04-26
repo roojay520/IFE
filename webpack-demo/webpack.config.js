@@ -12,14 +12,20 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // css 压缩
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+// 无需编译打包的静态资源转移
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
 const devEnv = process.env.NODE_ENV !== 'production';
+const webPath = devEnv ? 'http://127.0.0.1:4399/' : '';
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: { main: './src/index.js' },
+  entry: { main: './index.js' },
   output: {
     filename: 'js/[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: webPath,
   },
   // 优化设置
   optimization: {
@@ -44,9 +50,6 @@ module.exports = {
       ],
       use: {
         loader: 'babel-loader',
-        options: {
-        },
-
       },
     },
     {
@@ -57,7 +60,21 @@ module.exports = {
         'postcss-loader',
         'sass-loader',
       ],
-    }],
+    },
+    {
+      // 将图片字体文件转换为 base64 编码
+      test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          // 将小于 10KB 的图片转换为成 Base64 的格式，写入JS。
+          limit: 10240,
+          outputPath: 'assets/',
+          name: '[name].[hash:8].[ext]',
+        },
+      },
+    },
+    ],
   },
   plugins: [
     // css 分离到 dist/css 目录下
@@ -70,7 +87,7 @@ module.exports = {
       // 避免缓存 JS
       hash: true,
       filename: 'index.html',
-      template: './src/index.html',
+      template: 'index.html',
     }),
     new CleanWebpackPlugin(['dist'], {
       exclude: ['index.html'],
@@ -78,18 +95,31 @@ module.exports = {
       verbose: true,
     }),
     new WebpackMd5Hash(),
+    new CopyWebpackPlugin([{
+      from: 'static/*',
+      to: 'dist/static/',
+    }]),
   ],
   resolve: {
     extensions: ['.json', '.js', '.jsx', '.css'],
   },
+
   devtool: 'source-map',
+  //  编译监控设置
+  watchOptions: {
+    // 防止误操作重复打包,500ms 内重复保存,
+    aggregateTimeout: 500,
+    // 每隔 1000ms 检测一次文件变动
+    poll: 1000,
+    ignored: /node_modules/,
+  },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.join(__dirname, 'dist'),
     host: '127.0.0.1',
     compress: true,
     port: 4399,
     historyApiFallback: true,
-    open: true,
+    open: false,
     overlay: {
       warnings: true,
       errors: true,

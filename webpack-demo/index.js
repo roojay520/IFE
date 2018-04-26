@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import 'normalize.css';
-import './base.scss';
-import Hello from './hello';
+import './src/base.scss';
+import Hello from './src/hello';
 
 const app = document.getElementById('app');
 const myApp = new Hello();
