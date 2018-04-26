@@ -10,15 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/roojay520/IFE.git"
   },
-  "keywords": [
-    "IFE",
-    "Front-end"
-  ],
+  "keywords": ["IFE", "Front-end"],
   "author": "Roojay",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/roojay520/IFE/issues"
   },
   "homepage": "https://github.com/roojay520/IFE#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint-plugin-html": "^4.0.3"
+  }
 }
