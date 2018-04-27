@@ -46,7 +46,7 @@ module.exports = {
 
     // Enable CSS modules for all css / pre-processor files.
     // This option does not affect *.vue files.
-    modules: false
+    modules: false,
   },
 
   // use thread-loader for babel & TS in production build
@@ -71,11 +71,12 @@ module.exports = {
     hotOnly: false,
     // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
     proxy: null, // string | Object
-    before: app => {}
+    before: (app) => {},
   },
 
   // options for 3rd party plugins
   pluginOptions: {
     // ...
-  }
-}
+  },
+};
+

@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1 :class="`${test ? 'open ' : 'close'}`">前端学院</h1>
+    <h1 :class="[test ? 'open'  : 'close']">前端学院</h1>
     <button @click="switchStyle()">切换样式</button>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
+
 export default Vue.extend({
   data() {
     return {
@@ -21,10 +22,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-  $blue: #409eff;
-  $black: #333;
-  $white: #fff;
-
+@import '../styles/index.scss';
   div {
     width: 10em;
     margin: auto;
