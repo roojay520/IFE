@@ -4,6 +4,7 @@
       <router-link to="/demo01" class="link">demo1</router-link>
       <router-link to="/demo02" class="link">demo2</router-link>
       <router-link to="/demo03" class="link">demo3</router-link>
+      <router-link to="/demo04" class="link">demo4</router-link>
     </div>
     <router-view/>
   </div>

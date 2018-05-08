@@ -59,6 +59,7 @@ $timing: ease;
 .demo-3 {
   @include abs_center(300px, 300px);
   &:hover {
+    cursor: pointer;
     .mouth {
       transition: border-radius $delay $timing;
       width: 44px;

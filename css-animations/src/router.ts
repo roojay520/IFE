@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Demo01 from './views/Demo01.vue';
 import Demo02 from './views/Demo02.vue';
 import Demo03 from './views/Demo03.vue';
+import Demo04 from './views/Demo04.vue';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/demo03',
       name: 'demo03',
       component: Demo03,
+    },
+    {
+      path: '/demo04',
+      name: 'demo04',
+      component: Demo04,
     },
   ],
 });
